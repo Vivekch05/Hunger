@@ -1,18 +1,49 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Logo from './src/Components/Header/Logo';
-import Navigation from './src/Components/Header/Navigation';
 import Body from './src/Components/Body';
 import Header from './src/Components/Header';
+import About from './src/Components/Header/Navigation/About';
+import Services from './src/Components/Header/Navigation/Services';
+import Cart from './src/Components/Header/Navigation/Cart';
+import Home from './src/Components/Header/Navigation/Home';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router';
+import Error from './src/Components/Error';
 
 const App = () => {
   return (
     <div className='app'>
       <Header />
-      <Body />
+      <Outlet />
     </div>
   );
 }
 
+const appRouter = createBrowserRouter([
+  {
+    errorElement: <Error />,
+    path: '/',
+    element: <App />,
+    children: [
+      {
+        path: '/',
+        element: <Body />
+      },
+      {
+        path: '/about',
+        element: <About />
+      },
+      {
+        path: '/services',
+        element: <Services />
+      },
+      {
+        path: '/cart',
+        element: <Cart />
+      }]
+  }
+]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(App());
+root.render(
+  <RouterProvider router={appRouter} />
+
+);

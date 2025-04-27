@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "swiggy cloned app for food delivery",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
   },
   "author": "vivek chaurasia",
   "license": "ISC",
@@ -13,6 +15,13 @@
   },
   "dependencies": {
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
-  }
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.5.2"
+  },
+  "browserslist": [
+    "last 10 version",
+    "not dead",
+    "not < 2%",
+    "not ie <= 11"
+  ]
 }

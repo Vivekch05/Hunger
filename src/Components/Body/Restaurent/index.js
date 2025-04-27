@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './index.scss'
 import Search from '../Search';
+import ShimmerUI from '../../ShimmerUI';
 const Restaurent = () => {
     const [restaurentData, setRestaurentData] = useState([]);
     const [filteredRestaurentData, setFilteredRestaurentData] = useState([]);
@@ -29,7 +30,7 @@ const Restaurent = () => {
         fetchData()
     }, [])
 
-    return (
+    return filteredRestaurentData?.length ===0?<ShimmerUI/>:(
         <div className='restaurent'>
             <Search handleSearch={handleSearch} setSearchText={setSearchText} searchText={searchText} />
             <h1>Restaurent</h1>
