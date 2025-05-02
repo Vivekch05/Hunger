@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import './index.scss'
 import Search from '../Search';
 import ShimmerUI from '../../ShimmerUI';
+import { Link } from 'react-router';
 const Restaurent = () => {
     const [restaurentData, setRestaurentData] = useState([]);
     const [filteredRestaurentData, setFilteredRestaurentData] = useState([]);
@@ -30,22 +30,24 @@ const Restaurent = () => {
         fetchData()
     }, [])
 
-    return filteredRestaurentData?.length ===0?<ShimmerUI/>:(
-        <div className='restaurent'>
+    return filteredRestaurentData?.length === 0 ? <ShimmerUI /> : (
+        <div className='flex flex-col items-center justify-center'> 
             <Search handleSearch={handleSearch} setSearchText={setSearchText} searchText={searchText} />
-            <h1>Restaurent</h1>
-            <div className='restaurent-list'>
+            <h1 className='text-3xl font-bold text-red-500'>All Restaurent</h1>
+            <div className='flex flex-wrap items-center justify-center overflow-hidden'>
                 {filteredRestaurentData && filteredRestaurentData.map((restaurent, index) => (
-                    <div key={index} className='restaurent-card'>
-                        <img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${restaurent.info?.cloudinaryImageId}`} alt={restaurent.name} />
-                        <h2>{restaurent.info?.name}</h2>
-                        <div className='restaurent-area-rating'>
-                            <p>{restaurent?.info?.areaName}</p>
-                            <p>{restaurent?.info?.avgRating}</p>
+                    <Link key={restaurent?.info?.id} to={`/restaurent/${restaurent?.info?.id}`}>
+                        <div key={index} className='w-60 h-80 flex flex-col justify-center border-2 border-gray-300 rounded-lg shadow-lg m-4 p-4'>
+                            <img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${restaurent.info?.cloudinaryImageId}`} alt={restaurent.name} className='w-60 h-40 rounded-lg object-cover' />
+                            <h3 className='text-base font-bold'>{restaurent.info?.name}</h3>
+                            <p className='text-base font-bold'>Status: <span className='text-xs font-bold'>{restaurent?.info?.isOpen ? 'Open' : 'Closed'}</span></p>
+                            <div className='flex justify-between items-center w-full'>
+                                <p>{restaurent?.info?.areaName}</p>
+                                <p>{restaurent?.info?.avgRating}</p>
+                            </div>
+                            <p className='text-xs'>{restaurent?.info?.cuisines?.slice(0, 4)?.join(',')}</p>
                         </div>
-                        <p>{restaurent?.info?.cuisines?.slice(0, 4)?.join(',')}</p>
-                        <p>Restaurent Status: {restaurent?.info?.isOpen ? 'Open' : 'Closed'}</p>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
