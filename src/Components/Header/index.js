@@ -1,10 +1,9 @@
 import React from 'react'
 import Logo from './Logo'
 import Navigation from './Navigation'
-import './index.scss'
 const Header = () => {
   return (
-    <div className='header'>
+    <div className='flex justify-between items-center bg-white shadow-md p-2'>
     <Logo />
     <Navigation />
     </div>

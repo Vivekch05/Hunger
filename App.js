@@ -8,6 +8,7 @@ import Cart from './src/Components/Header/Navigation/Cart';
 import Home from './src/Components/Header/Navigation/Home';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router';
 import Error from './src/Components/Error';
+import RestaurentItem from './src/Components/Body/RestaurentItem';
 
 const App = () => {
   return (
@@ -39,7 +40,16 @@ const appRouter = createBrowserRouter([
       {
         path: '/cart',
         element: <Cart />
-      }]
+      },
+      // {
+      //   path: '/onlinestatus',
+      //   element: <OnlineStatus />
+      // },
+      {
+        path: '/restaurent/:resId',
+        element: <RestaurentItem />
+      }
+    ]
   }
 ]);
 const root = ReactDOM.createRoot(document.getElementById('root'));
