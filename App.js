@@ -6,7 +6,7 @@ import About from './src/Components/Header/Navigation/About';
 import Services from './src/Components/Header/Navigation/Services';
 import Cart from './src/Components/Header/Navigation/Cart';
 import Home from './src/Components/Header/Navigation/Home';
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import Error from './src/Components/Error';
 import RestaurentItem from './src/Components/Body/RestaurentItem';
 
