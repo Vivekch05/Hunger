@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
 import UserContext from '../../utils/userContext';
 import OnlineStatus from './OnlineStatus';
+import { useSelector } from 'react-redux';
 
 const Navigation = () => {
   const data = useContext(UserContext);
   console.log(data, "data")
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const cartItem = useSelector((store)=>store.cart.items);
   return (
     <>
       <ul className='flex justify-between align-center list-none'>
@@ -15,9 +17,9 @@ const Navigation = () => {
         <li className='text-lg font-bold p-2 m-1'>
           <Link to='/about'>About</Link></li>
         <li className='text-lg font-bold p-2 m-1'>
-          <Link to='/services'>Services</Link></li>
+          <Link to='/contactus'>ContactUs</Link></li>
         <li className='text-lg font-bold p-2 m-1'>
-          <Link to='/cart'>Cart</Link></li>
+          <Link to='/cart'>Cart ({cartItem.length} items)</Link></li>
         <li className='flex items-center p-2 m-1'>
           <OnlineStatus />
         </li>
