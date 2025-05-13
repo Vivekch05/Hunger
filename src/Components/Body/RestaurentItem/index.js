@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { addItem } from '../../../Redux/cartSlice';
 import { useDispatch } from 'react-redux';
+import Loader from '../../Common/Loader';
+import Error from '../../Common/Error';
 
 const RestaurentItem = () => {
     const [restaurentMenu, setRestaurentMenu] = useState([]);
     const params = useParams();
-    const dispatch=useDispatch();
+    const dispatch = useDispatch();
 
     const formatPrice = (price) => {
         const numPrice = Number(price);
@@ -25,7 +27,7 @@ const RestaurentItem = () => {
             const filteredData = data?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter(item => item?.card?.card?.itemCards?.length > 0 ? item?.card?.card : null);
             await setRestaurentMenu(filteredData);
         } catch (error) {
-            console.error('Error fetching data:', error);
+            <Error message="Error fetching data" />
         }
     };
 
@@ -33,7 +35,7 @@ const RestaurentItem = () => {
         fetchData();
     }, []);
 
-    const handleAddItem=(item)=>{
+    const handleAddItem = (item) => {
         console.log(item);
         dispatch(addItem(item));
     }
@@ -41,7 +43,7 @@ const RestaurentItem = () => {
     return (
         <div className='flex flex-col items-center justify-center my-2'>
             {
-                restaurentMenu && restaurentMenu?.length === 0 ? <h1 className='text-2xl font-bold text-red-500'>Loading...</h1> :
+                restaurentMenu && restaurentMenu?.length === 0 ? <Loader /> :
                     restaurentMenu.map((category, categoryIndex) => {
                         return (
                             <div key={categoryIndex} className="w-full max-w-4xl">
@@ -78,7 +80,7 @@ const RestaurentItem = () => {
                                             <button className='px-6 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg 
                                                 hover:from-amber-600 hover:to-amber-700 transform hover:scale-105 transition-all duration-300 
                 focus:outline-none focus:ring-4 focus:ring-amber-200 font-semibold shadow-md'
-                onClick={()=>handleAddItem(item)}>
+                                                onClick={() => handleAddItem(item)}>
                                                 Add to Cart
                                             </button>
                                         </div>
