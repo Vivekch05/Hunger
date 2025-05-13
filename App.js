@@ -3,19 +3,23 @@ import ReactDOM from 'react-dom/client';
 import Body from './src/Components/Body';
 import Header from './src/Components/Header';
 import About from './src/Components/Header/Navigation/About';
-import Services from './src/Components/Header/Navigation/Services';
 import Cart from './src/Components/Header/Navigation/Cart';
 import Home from './src/Components/Header/Navigation/Home';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import Error from './src/Components/Error';
 import RestaurentItem from './src/Components/Body/RestaurentItem';
+import ContactUS from './src/Components/Header/Navigation/ContactUS';
+import { Provider } from 'react-redux';
+import store from './src/Redux/appStore';
 
 const App = () => {
   return (
-    <div className='app'>
-      <Header />
-      <Outlet />
-    </div>
+    <Provider store={store}>
+      <div className='app'>
+        <Header />
+        <Outlet />
+      </div>
+    </Provider>
   );
 }
 
@@ -34,8 +38,8 @@ const appRouter = createBrowserRouter([
         element: <About />
       },
       {
-        path: '/services',
-        element: <Services />
+        path: '/contactus',
+        element: <ContactUS />
       },
       {
         path: '/cart',

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
+import { addItem } from '../../../Redux/cartSlice';
+import { useDispatch } from 'react-redux';
 
 const RestaurentItem = () => {
     const [restaurentMenu, setRestaurentMenu] = useState([]);
     const params = useParams();
-    
+    const dispatch=useDispatch();
+
     const formatPrice = (price) => {
         const numPrice = Number(price);
         return isNaN(numPrice) ? '0.00' : (numPrice / 100).toFixed(2);
@@ -14,7 +17,7 @@ const RestaurentItem = () => {
         const numRating = Number(rating);
         return isNaN(numRating) ? '0.0' : numRating.toFixed(1);
     };
-    
+
     const fetchData = async () => {
         try {
             const response = await fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=28.39140273541051&lng=77.03241761773825&restaurantId=${params?.resId}&catalog_qa=undefined&submitAction=ENTER`);
@@ -29,6 +32,11 @@ const RestaurentItem = () => {
     useEffect(() => {
         fetchData();
     }, []);
+
+    const handleAddItem=(item)=>{
+        console.log(item);
+        dispatch(addItem(item));
+    }
 
     return (
         <div className='flex flex-col items-center justify-center my-2'>
@@ -69,15 +77,16 @@ const RestaurentItem = () => {
                                             </div>
                                             <button className='px-6 py-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-lg 
                                                 hover:from-amber-600 hover:to-amber-700 transform hover:scale-105 transition-all duration-300 
-                focus:outline-none focus:ring-4 focus:ring-amber-200 font-semibold shadow-md'>
+                focus:outline-none focus:ring-4 focus:ring-amber-200 font-semibold shadow-md'
+                onClick={()=>handleAddItem(item)}>
                                                 Add to Cart
                                             </button>
                                         </div>
                                         <div className="w-48 h-48 flex-shrink-0 relative group">
                                             {item?.card?.info?.imageId ? (
-                                                <img 
-                                                    className='w-full h-full object-cover rounded-xl shadow-md group-hover:shadow-xl transition-all duration-300' 
-                                                    src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${item?.card?.info?.imageId}`} 
+                                                <img
+                                                    className='w-full h-full object-cover rounded-xl shadow-md group-hover:shadow-xl transition-all duration-300'
+                                                    src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${item?.card?.info?.imageId}`}
                                                     alt={item?.card?.info?.name}
                                                     onError={(e) => {
                                                         e.target.onerror = null;
