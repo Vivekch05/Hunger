@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import CartItem from './CartItem';
 import { removeItem } from '../../../../Redux/cartSlice';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
   // Placeholder for cart items (empty for now)
@@ -20,7 +21,7 @@ const Cart = () => {
   const formatPrice = (price) => {
     const numPrice = Number(price);
     return isNaN(numPrice) ? '0.00' : `₹${(numPrice / 100).toFixed(2)}`;
-};
+  };
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
@@ -67,9 +68,15 @@ const Cart = () => {
                   <span className="text-lg font-semibold text-gray-900">Total</span>
                   <span className="text-xl font-bold text-amber-500">{formatPrice(totalPrice)}</span>
                 </div>
-                <button className="px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-semibold shadow-lg hover:from-amber-600 hover:to-amber-700 transition-all duration-300">
+                {/* <button className="px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-semibold shadow-lg hover:from-amber-600 hover:to-amber-700 transition-all duration-300">
                   Checkout
-                </button>
+                </button> */}
+                <Link
+                  to="/checkout"
+                  className="px-8 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white rounded-xl font-semibold shadow-lg hover:from-amber-600 hover:to-amber-700 transition-all duration-300"
+                >
+                  Checkout
+                </Link>
               </div>
             </div>
           </div>
