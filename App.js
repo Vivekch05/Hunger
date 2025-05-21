@@ -10,7 +10,7 @@ import RestaurentItem from './src/Components/Body/RestaurentItem';
 import ContactUS from './src/Components/Header/Navigation/ContactUS';
 import { Provider } from 'react-redux';
 import store from './src/Redux/appStore';
-import Error from './src/Components/Common/Error';
+// import Error from './src/Components/Common/Error';
 import Checkout from './src/Components/Body/CheckOut';
 
 const App = () => {
@@ -26,7 +26,7 @@ const App = () => {
 
 const appRouter = createBrowserRouter([
   {
-    errorElement: <Error />,
+    // errorElement: <Error />,
     path: '/',
     element: <App />,
     children: [
