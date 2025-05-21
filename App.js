@@ -6,11 +6,12 @@ import About from './src/Components/Header/Navigation/About';
 import Cart from './src/Components/Header/Navigation/Cart';
 import Home from './src/Components/Header/Navigation/Home';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import Error from './src/Components/Error';
 import RestaurentItem from './src/Components/Body/RestaurentItem';
 import ContactUS from './src/Components/Header/Navigation/ContactUS';
 import { Provider } from 'react-redux';
 import store from './src/Redux/appStore';
+import Error from './src/Components/Common/Error';
+import Checkout from './src/Components/Body/CheckOut';
 
 const App = () => {
   return (
@@ -45,10 +46,10 @@ const appRouter = createBrowserRouter([
         path: '/cart',
         element: <Cart />
       },
-      // {
-      //   path: '/onlinestatus',
-      //   element: <OnlineStatus />
-      // },
+      {
+        path: '/checkout',
+        element: <Checkout />
+      },
       {
         path: '/restaurent/:resId',
         element: <RestaurentItem />
