@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { addItem } from '../../../Redux/cartSlice';
 import { useDispatch } from 'react-redux';
 import Loader from '../../Common/Loader';
-import Error from '../../Common/Error';
+import Error from '../../Common/Error'
 
 const RestaurentItem = () => {
     const [restaurentMenu, setRestaurentMenu] = useState([]);
