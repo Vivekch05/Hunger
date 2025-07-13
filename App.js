@@ -10,7 +10,7 @@ import RestaurentItem from './src/Components/Body/RestaurentItem';
 import ContactUS from './src/Components/Header/Navigation/ContactUS';
 import { Provider } from 'react-redux';
 import store from './src/Redux/appStore';
-import Checkout from './src/Components/Body/CheckOut';
+import Checkout from './src/Components/Body/Checkout';
 
 const App = () => {
   return (
